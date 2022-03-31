@@ -1,0 +1,26 @@
+<html>
+<head><title>test unmute></title></head>
+<body>
+<video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" autoplay-unmuted-if-possible width=600 height=400></video>
+<script>
+  function startAutoplayUnmuted() {
+    var video = document.querySelector('video[autoplay-unmuted-if-possible]');
+    // First try to autoplay with sound
+    video.muted = false;
+    video.play().catch(_ => {
+      // if autoplay with sound fails, enable muted
+      video.muted = true;
+      // depending on if you want video autoplay or not as fallback
+      // set autoplay_video true or false
+      var autoplayVideo = true
+      if(autoplayVideo) {
+        video.play();
+      }
+    });
+  }
+
+  document.onLoad=startAutoplayUnmuted();
+  // Or call any time after onLoad.
+</script>
+</body>
+</html>
